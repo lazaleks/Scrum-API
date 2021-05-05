@@ -35,6 +35,7 @@ namespace Scrum.Core.EndPoints.TaskLists
             {
                 var ticketList = await _context.TicketLists.AsNoTracking()
                     .Where(x => x.Id == request.TicketListId && x.ProjectId == request.ProjectId)
+                    .Include(x => x.Tickets)
                     .FirstOrDefaultAsync();
 
                 if (ticketList == null)

@@ -1,8 +1,0 @@
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\bin\Debug\netcoreapp3.1\Scrum.Core2.deps.json
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\bin\Debug\netcoreapp3.1\Scrum.Core2.dll
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\obj\Debug\netcoreapp3.1\Scrum.Core2.csprojAssemblyReference.cache
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\obj\Debug\netcoreapp3.1\Scrum.Core2.AssemblyInfoInputs.cache
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\obj\Debug\netcoreapp3.1\Scrum.Core2.AssemblyInfo.cs
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\bin\Debug\netcoreapp3.1\Scrum.Core2.runtimeconfig.json
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\bin\Debug\netcoreapp3.1\Scrum.Core2.runtimeconfig.dev.json
-C:\Users\Igor\source\repos\Scrum\Scrum.Core\obj\Debug\netcoreapp3.1\Scrum.Core2.genruntimeconfig.cache
