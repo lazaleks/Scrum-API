@@ -81,7 +81,7 @@ namespace Scrum
             app.UseMiddleware<GlobalExceptionMiddleware>();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Thinker QR Api V1"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scrum Api V1"); });
 
             app.UseHttpsRedirection();
 
