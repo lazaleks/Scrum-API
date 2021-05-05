@@ -49,5 +49,12 @@ namespace Scrum.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("api/users/{userId}/myTasks")]
+        public async Task<IActionResult> GetTicketsForUser([FromRoute] int userId)
+        {
+            var result = await _mediator.Send(new GetTicketsForUser.Query { UserId = userId });
+            return Ok(result);
+        }
     }
 }

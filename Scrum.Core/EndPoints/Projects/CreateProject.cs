@@ -34,6 +34,9 @@ namespace Scrum.Core.EndPoints.Projects
 
             public async  Task<ProjectJson> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
+                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Project must have a name.", ErrorCode = 400 });
+
                 var user = await _context.Users.Where(x => x.Id == request.UserId)
                     .Include(x => x.User_Projects)
                     .ThenInclude(x => x.Project)

@@ -55,5 +55,13 @@ namespace Scrum.Api.Controllers
             var result = await _mediator.Send(new DeleteTicket.Command { TicketId = ticketId });
             return Ok(result);
         }
+
+        [HttpPatch]
+        [Route("{ticketId}/assignTo/{assigneeId}")]
+        public async Task<IActionResult> AssignTicket([FromRoute] int ticketId, [FromRoute] int assigneeId)
+        {
+            var result = await _mediator.Send(new AssignTaskToUser.Command { TaskId = ticketId, UserId = assigneeId });
+            return Ok(result);
+        }
     }
 }

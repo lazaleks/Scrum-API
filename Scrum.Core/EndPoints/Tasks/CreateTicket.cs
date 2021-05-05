@@ -37,14 +37,16 @@ namespace Scrum.Core.EndPoints.Tasks
 
             public async Task<TicketJson> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
+                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Ticket must have a name.", ErrorCode = 400 });
+
                 var ticketList = await _context.TicketLists.Where(x => x.Id == request.TicketListId)
                     .Include(x => x.Tickets)
                     .FirstOrDefaultAsync();
 
                 if (ticketList == null)
                     throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Ticket list not found.", ErrorCode = 404 });
-                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
-                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Ticket must have a name.", ErrorCode = 400 });
+
                 if (ticketList.Tickets.Any(x => x.Name == request.Name))
                     throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "There is already a ticket by that name.", ErrorCode = 400 });
 

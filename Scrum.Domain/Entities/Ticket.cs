@@ -19,5 +19,6 @@ namespace Scrum.Domain.Entities
         public DateTime? DueDate { get; set; }
         public DateTime? CompletedAt { get; set; }
         public bool Done { get; set; }
+        public int AssignedTo { get; set; }
     }
 }

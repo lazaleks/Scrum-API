@@ -36,6 +36,10 @@ namespace Scrum.Core.EndPoints.Tasks
 
             public async Task<TicketJson> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
+                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Ticket must have a name.", ErrorCode = 400 });
+
+
                 var ticketList = await _context.TicketLists.Where(x => x.Id == request.TicketListId)
                     .Include(x => x.Tickets)
                     .FirstOrDefaultAsync();
