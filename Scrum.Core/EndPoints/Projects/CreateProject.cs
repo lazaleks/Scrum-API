@@ -7,6 +7,7 @@ using Scrum.DataAccess;
 using Scrum.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,6 +20,8 @@ namespace Scrum.Core.EndPoints.Projects
         public class Command : IRequest<ProjectJson>
         {
             public int UserId { get; set; }
+            [Required]
+            [MaxLength(20)]
             public string Name { get; set; }
         }
         public class Handler : IRequestHandler<Command,ProjectJson>
@@ -34,8 +37,6 @@ namespace Scrum.Core.EndPoints.Projects
 
             public async  Task<ProjectJson> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
-                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Project must have a name.", ErrorCode = 400 });
 
                 var user = await _context.Users.Where(x => x.Id == request.UserId)
                     .Include(x => x.User_Projects)

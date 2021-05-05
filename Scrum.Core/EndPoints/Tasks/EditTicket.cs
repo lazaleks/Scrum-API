@@ -6,6 +6,7 @@ using Scrum.Core.Exceptions;
 using Scrum.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,9 @@ namespace Scrum.Core.EndPoints.Tasks
         {
             public int TicketId { get; set; }
             public int TicketListId{ get; set; }
+            [MaxLength(20)]
             public string Name { get; set; }
+            [MaxLength(1000)]
             public string Description { get; set; }
             public bool? Done { get; set; }
         }
@@ -36,9 +39,6 @@ namespace Scrum.Core.EndPoints.Tasks
 
             public async Task<TicketJson> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (String.IsNullOrEmpty(request.Name) || String.IsNullOrWhiteSpace(request.Name))
-                    throw new BusinessException(new Validations.ValidationModels.ValidationResultModel { Message = "Ticket must have a name.", ErrorCode = 400 });
-
 
                 var ticketList = await _context.TicketLists.Where(x => x.Id == request.TicketListId)
                     .Include(x => x.Tickets)
